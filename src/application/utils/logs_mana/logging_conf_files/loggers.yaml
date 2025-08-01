@@ -1,0 +1,7 @@
+root:
+  level: DEBUG
+  handlers: [console, file]
+
+main:
+  level: DEBUG
+  handlers: [console, file]

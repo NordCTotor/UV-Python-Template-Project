@@ -1,0 +1,11 @@
+console:
+  formatter: simple
+  class: logging.StreamHandler
+  stream: ext://sys.stdout
+
+file:
+  formatter: simple
+  class: logging.handlers.TimedRotatingFileHandler
+  when: midnight
+  backupCount: 7
+  encoding: utf-8

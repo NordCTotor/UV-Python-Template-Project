@@ -1,0 +1,3 @@
+simple:
+  style: "{"
+  format: "{asctime} - {name} - {levelname} - {message}"
