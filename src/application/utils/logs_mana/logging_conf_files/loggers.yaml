@@ -5,3 +5,4 @@ root:
 main:
   level: DEBUG
   handlers: [console, file]
+  propagate: false
