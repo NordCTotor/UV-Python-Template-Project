@@ -1,11 +1,17 @@
 import logging
 import logging.config
-import os
 from yaml import safe_load
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
-# Determine project root from environment or filesystem
-PROJECT_ROOT_DIRECTORY = Path(os.getenv('PROJECT_ROOT_DIRECTORY') or Path(__file__).resolve().parents[4])
+
+
+load_dotenv()  # Load environment variables from .env file
+PROJECT_ROOT_DIRECTORY = os.getenv('PROJECT_ROOT_DIRECTORY')  # Get the project root directory from environment variable
+
+
+
 
 class LoggingManager:
 
@@ -14,8 +20,9 @@ class LoggingManager:
     def get_logging_conf_from_file(*,filename:str) -> dict:
         """
         Reads a YAML file and returns its content as a dictionary.
+        print(PROJECT_ROOT_DIRECTORY)
         """
-        file_path = Path(PROJECT_ROOT_DIRECTORY/'src'/'application'/'utils'/'logs_mana'/'logging_conf_files'/ filename)
+        file_path = Path(Path(PROJECT_ROOT_DIRECTORY)/'src'/'application'/'utils'/'logs_mana'/'logging_conf_files'/ filename)
         if not file_path.exists():
             raise FileNotFoundError(f"Configuration file {filename} not found in {file_path.parent}")
         with open(file_path, 'r') as file:

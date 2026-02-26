@@ -6,13 +6,13 @@ from application.utils.system_info.system_info_management import SystemInfo
 logger = logging.getLogger('main')
 
 def main() -> None:
-    print("Executing logp as a script.")
-    HOME_DIR = pathlib.Path(__file__).parent.parent.parent
-    print(f"Home directory: {HOME_DIR}")
+    print("Executing application initialization stage")
 
     SystemInfo.initializing_dot_env_variables()
     LoggingManager.setup_logging()
-    logger.debug("Debug message from __main__")
+
+    logging.info("Application started successfully!")
+    logging.info("Application excecuted successfully!")
 
 if __name__ == "__main__":
     main()

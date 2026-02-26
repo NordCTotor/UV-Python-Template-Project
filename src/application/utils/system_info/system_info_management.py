@@ -75,3 +75,5 @@ class SystemInfo:
         system_info = platform.uname()
         dotenv.set_key(str(dot_env_file_info["path"]), "SYSTEM_INFORMATION", f"{system_info.system}")
         dotenv.set_key(str(dot_env_file_info["path"]), "NODE_INFORMATION", f"{system_info.node}")
+
+        dotenv.load_dotenv(dot_env_file_info["path"], override=True)  # Reload to ensure new keys are available
