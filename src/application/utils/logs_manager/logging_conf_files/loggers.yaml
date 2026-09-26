@@ -2,7 +2,11 @@ root:
   level: DEBUG
   handlers: [console, file]
 
-main:
-  level: DEBUG
-  handlers: [console, file]
-  propagate: false
+# Declare named loggers only when you need to override root behaviour,
+# e.g. silence a chatty third-party library:
+# urllib3:
+#   level: WARNING
+# or route a subsystem to a dedicated handler:
+# application.audit:
+#   handlers: [audit_file]
+#   propagate: false
