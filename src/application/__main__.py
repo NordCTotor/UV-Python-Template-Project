@@ -2,19 +2,20 @@
 
 import logging
 
+from application.context import init_context
 from application.utils.logs_manager.logging_manager import setup_logging
-from application.utils.system_info.system_info_management import load_environment
 
 
 def main() -> None:
-    """Initialize environment and logging, then run the application."""
+    """Initialize the global context and logging, then run the application."""
     print("Executing application initialization stage")
 
-    load_environment()
-    setup_logging()
+    context = init_context()
+    setup_logging(log_file=context.log_file)
 
-    logging.getLogger("main").info("Application started successfully!")
-    logging.getLogger("main").info("Application executed successfully!")
+    logger = logging.getLogger("main")
+    logger.info("Application started successfully!")
+    logger.info("Application executed successfully!")
 
 
 if __name__ == "__main__":
