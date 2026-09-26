@@ -29,11 +29,15 @@ uv sync --all-groups        # Installer toutes les dépendances (dev + test)
 uv run runapp               # Lancer l'application
 ```
 
-Au premier lancement, un fichier `.env` est créé à la racine avec :
+Un fichier `.env` optionnel à la racine permet de définir des variables d’environnement locales (secrets, URLs, flags). Il est **en lecture seule** pour l’application : `load_dotenv` le charge s’il existe, sans jamais le modifier.
 
-- `PROJECT_ROOT_DIRECTORY` : racine du projet
-- `SYSTEM_INFORMATION` : système d'exploitation
-- `NODE_INFORMATION` : nom de la machine
+Les informations système et les chemins ne sont plus stockés dans `.env` : l’application construit un **contexte global** typé et immuable (`src/application/context.py`) contenant :
+
+- `project_root` : racine du projet
+- `system` / `node` : informations système capturées au runtime
+- `log_file` : chemin du fichier de log
+
+Accès : `init_context()` au démarrage, `get_context()` ensuite.
 
 ## Outillage
 
