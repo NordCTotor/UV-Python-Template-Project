@@ -1,19 +1,20 @@
+"""Application entry point."""
+
 import logging
 
-from application.utils.logs_mana.logging_mana import LoggingManager
-from application.utils.system_info.system_info_management import SystemInfo
-
-logger = logging.getLogger("main")
+from application.utils.logs_manager.logging_manager import setup_logging
+from application.utils.system_info.system_info_management import load_environment
 
 
 def main() -> None:
+    """Initialize environment and logging, then run the application."""
     print("Executing application initialization stage")
 
-    SystemInfo.initializing_dot_env_variables()
-    LoggingManager.setup_logging()
+    load_environment()
+    setup_logging()
 
-    logging.info("Application started successfully!")
-    logging.info("Application excecuted successfully!")
+    logging.getLogger("main").info("Application started successfully!")
+    logging.getLogger("main").info("Application executed successfully!")
 
 
 if __name__ == "__main__":
